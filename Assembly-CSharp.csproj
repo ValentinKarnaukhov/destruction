@@ -44,7 +44,9 @@
     <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
-  <ItemGroup>     <Compile Include="Assets\Scripts\Particle.cs" />
+  <ItemGroup>     <Compile Include="Assets\Scripts\MeshBuilder.cs" />
+     <Compile Include="Assets\Scripts\Particle.cs" />
+     <Compile Include="Assets\Scripts\Splitble.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/valentin/projects/destruction/destruction/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

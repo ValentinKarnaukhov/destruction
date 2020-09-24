@@ -2,32 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Particle : MonoBehaviour{
+public class MeshBuilder{
+
+    public GameObject buildGameObject(Vector3 center, float size){
+        GameObject gameObject = new GameObject();
+
+        gameObject.AddComponent<MeshFilter>();
+        gameObject.GetComponent<MeshFilter>().mesh = buildMesh(center, size);
+        gameObject.AddComponent<MeshRenderer>();
+        gameObject.transform.TransformVector(center);
     
-    private MeshFilter meshFilter;
-    void Start(){
-       meshFilter = FindObjectOfType<MeshFilter>();
+        return gameObject;
     }
 
-    void Update(){
-        // Split();
-    }
-
-    private void OnMouseDown() {
-        ReMesh();
-    }
-
-	private void ReMesh(){
-		List<Vector3> vertices = new List<Vector3>();
-		for (int i = 0; i < vertices.Count; i++)
-		{
-			Debug.Log(vertices[i]);
-		}
-	}
-
-    void Split(){
-        float size = 0.5f;
-        Vector3 initialPoint = transform.InverseTransformPoint(transform.position);
+    public Mesh buildMesh(Vector3 center, float size){
+        Vector3 initialPoint = center;
 
 		Vector3[] coordiates = {
 			initialPoint + new Vector3 (-size, -size, size),
@@ -95,12 +84,14 @@ public class Particle : MonoBehaviour{
 	        23, 21, 20,     23, 22, 21,	    // top
         };
 
-		Mesh mesh = GetComponent<MeshFilter> ().mesh;
+		Mesh mesh = new Mesh();
 		mesh.Clear ();
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mesh.normals = normals;
         mesh.uv = uvs;
 		mesh.Optimize ();
+        return mesh;
     }
+
 }
